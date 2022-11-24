@@ -59,7 +59,7 @@ while True:
 
     try:
 
-        if not gameover:
+        if not gameover:                            # 게임오버가 아닐 시에만 게임 동작
 
             for event in pg.event.get():
 
@@ -141,7 +141,7 @@ while True:
                     
                     meteos.append(((meteo_size[n], meteo), dy))
 
-                    health_cnt -= 1
+                    health_cnt -= 1                 # 체력이 0이 될때 게임오버 True
                     if health_cnt == 0: gameover = True
 
             if score%5000 == 0: n_meteo += 2
@@ -172,7 +172,7 @@ while True:
             
             cnt += 0.1                              # 충돌 이미지 삭제를 위한 카운트
 
-            go_img = small_font.render('GAME OVER', True, RED)
+            go_img = small_font.render('GAME OVER', True, RED)  # 게임 오버 처리
             if gameover: scr.blit(go_img, go_img.get_rect(centerx = scr_width/2, centery = scr_height/2))
 
         pg.display.update()
