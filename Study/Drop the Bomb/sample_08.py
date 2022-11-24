@@ -30,12 +30,12 @@ score = 0
 
 game_over = False
 
-smp_img = pg.image.load("sample/ball.png")
+smp_img = pg.image.load("ball.png")
 smp_img = pg.transform.scale(smp_img, (80, 80))
 smp = smp_img.get_rect(centerx = 400, bottom = 800)
 
 
-enm_img = pg.image.load("sample/bomb.png")
+enm_img = pg.image.load("bomb.png")
 enm_img = pg.transform.rotate(enm_img, 45.0)
 
 enms = []
