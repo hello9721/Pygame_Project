@@ -13,3 +13,18 @@
 
 
 </details>
+
+#
+#### Save the Earth ( 22/11/24 ) - 운석 없애기 게임
+        > 점수 표시 / 체력 표시 / 체력 0일시에 게임종료 / 공격과 적과의 충돌 처리 / 점수가 높아질수록 난이도 업
+
+<details>
+<summary> 🖼️ </summary>
+
+</br>
+
+> Save the Earth
+
+![Save the Earth](https://user-images.githubusercontent.com/95046369/203726314-58836f27-efa2-4c8f-adf3-d298c292595e.gif)
+
+</details>
