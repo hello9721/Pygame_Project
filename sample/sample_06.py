@@ -36,7 +36,8 @@ enms = []
 
 for i in range(3):
 
-    enm = enm_img.get_rect(left = random.randint(0, 800), top = -100)
+    enm = enm_img.get_rect(top = -100)
+    enm.left = random.randint(0, 800 - enm.width)
     enms.append(enm)
 
 
@@ -52,7 +53,14 @@ while 1:                                # 메인 루프
             if event.key == pg.K_LEFT: smp.left -= 5
             elif event.key == pg.K_RIGHT: smp.left += 5
 
-    for enm in enms: enm.top += 5
+    for enm in enms:
+        
+        enm.top += 5
+
+        if enm.top > 800:               # 폭탄이 바닥 밑으로 가면 다시 위쪽 랜덤 위치로
+
+            enm.left = random.randint(0, 800 - enm.width)
+            enm.top = -100
 
     if smp.left < 0: smp.left = 0
     elif smp.right > 800: smp.right = 800
