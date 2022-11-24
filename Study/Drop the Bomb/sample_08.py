@@ -30,7 +30,7 @@ score = 0
 
 game_over = False
 
-smp_img = pg.image.load("ball.png")
+smp_img = pg.image.load("ball2.png")
 smp_img = pg.transform.scale(smp_img, (80, 80))
 smp = smp_img.get_rect(centerx = 400, bottom = 800)
 
