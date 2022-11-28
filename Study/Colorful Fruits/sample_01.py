@@ -1,5 +1,6 @@
 import pygame as pg
 import random as rd
+import time as tm
 
 pg.init()
 
@@ -10,13 +11,19 @@ scr = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clk = pg.time.Clock() 
 
 score = 0
-small_font = pg.font.SysFont('malgungothic', 30)
+small_font = pg.font.SysFont('britannic', 30)
+time_font = pg.font.SysFont('britannic', 23)
 
 # 과일 이미지
-blue_img = pg.image.load('./assets/p_grape.png')
-orange_img = pg.image.load('./assets/o_orange.png')
-red_img = pg.image.load('./assets/r_apple.png')
-yellow_img = pg.image.load('./assets/y_banana.png')
+blue_img = pg.image.load('./assets/bg_purple.png')
+orange_img = pg.image.load('./assets/bg_orange.png')
+red_img = pg.image.load('./assets/bg_red.png')
+yellow_img = pg.image.load('./assets/bg_yellow.png')
+
+b_img = pg.image.load('./assets/p_grape.png')
+o_img = pg.image.load('./assets/o_orange.png')
+r_img = pg.image.load('./assets/r_apple.png')
+y_img = pg.image.load('./assets/y_banana.png')
 
 blue_img = pg.transform.scale(blue_img, (90, 90))
 orange_img = pg.transform.scale(orange_img, (90, 90))
@@ -24,6 +31,7 @@ red_img = pg.transform.scale(red_img, (90, 90))
 yellow_img = pg.transform.scale(yellow_img, (90, 90))
 
 fruits = [blue_img, orange_img, red_img, yellow_img]
+n_fruits = [b_img, o_img, r_img, y_img]
 
 # 체력바 이미지
 health_3 = pg.image.load('./assets/health_full.png')
@@ -59,15 +67,14 @@ circle_t = pg.transform.scale(circle_t, (438, 438))
 circle_bg = pg.transform.scale(circle_bg, (550, 550))
 
 # 메인 과일 이미지
-fruit_img = [fruits[rd.randint(0, len(fruits) - 1)], fruits[rd.randint(0, len(fruits) - 1)], fruits[rd.randint(0, len(fruits) - 1)], fruits[rd.randint(0, len(fruits) - 1)]]
-fruit = fruit_img[0].get_rect(centery = ((SCREEN_HEIGHT-100)/2), centerx = SCREEN_WIDTH/2)
+fruit_img = [rd.randint(0, len(fruits) - 1), rd.randint(0, len(fruits) - 1), rd.randint(0, len(fruits) - 1), rd.randint(0, len(fruits) - 1)]
+fruit = fruits[fruit_img[0]].get_rect(centery = ((SCREEN_HEIGHT-100)/2), centerx = SCREEN_WIDTH/2)
 
-next_furit_img_1 = pg.transform.scale(fruit_img[1], (50, 50))
-next_furit_1 = next_furit_img_1.get_rect(top = SCREEN_HEIGHT - 50, right = SCREEN_WIDTH - 120)
-next_furit_img_2 = pg.transform.scale(fruit_img[2], (50, 50))
-next_furit_2 = next_furit_img_2.get_rect(top = SCREEN_HEIGHT - 50, right = SCREEN_WIDTH - 60)
-next_furit_img_3 = pg.transform.scale(fruit_img[2], (50, 50))
-next_furit_3 = next_furit_img_3.get_rect(top = SCREEN_HEIGHT - 50, right = SCREEN_WIDTH - 10)
+next_furit_img_1 = pg.transform.scale(n_fruits[fruit_img[1]], (50, 50))
+next_furit_img_1 = next_furit_img_1.convert()
+next_furit_img_1.set_alpha(100)
+next_furit_img_1.set_colorkey((0, 0, 0))
+next_furit_1 = next_furit_img_1.get_rect(centery = fruit.centery + 50, right = SCREEN_WIDTH - 220)
 
 head, angle = "top", 0
 
@@ -76,6 +83,10 @@ head, angle = "top", 0
 # circle_r 270.0 blue
 # circle_t 360.0 red
 
+# 제한 시간
+start_time = tm.time()
+
+# 배경 화면
 bg_img = pg.image.load('./assets/bg.png')
 
 # 게임오버 화면
@@ -104,20 +115,19 @@ while True:
 
                         circle_t = pg.transform.rotate(circle_t, n)
 
-                        if fruit_img[0] == yellow_img:
+                        if fruits[fruit_img[0]] == yellow_img:
 
                             score += 100
 
                             fruit_img.pop(0)
-                            fruit_img.append(fruits[rd.randint(0, len(fruits) - 1)])
-                            fruit = fruit_img[0].get_rect(centery = ((SCREEN_HEIGHT-100)/2), centerx = SCREEN_WIDTH/2)
+                            fruit_img.append(rd.randint(0, len(fruits) - 1))
+                            fruit = fruits[fruit_img[0]].get_rect(centery = ((SCREEN_HEIGHT-100)/2), centerx = SCREEN_WIDTH/2)
 
-                            next_furit_img_1 = pg.transform.scale(fruit_img[1], (50, 50))
-                            next_furit_1 = next_furit_img_1.get_rect(top = SCREEN_HEIGHT - 50, right = SCREEN_WIDTH - 120)
-                            next_furit_img_2 = pg.transform.scale(fruit_img[2], (50, 50))
-                            next_furit_2 = next_furit_img_2.get_rect(top = SCREEN_HEIGHT - 50, right = SCREEN_WIDTH - 60)
-                            next_furit_img_3 = pg.transform.scale(fruit_img[2], (50, 50))
-                            next_furit_3 = next_furit_img_3.get_rect(top = SCREEN_HEIGHT - 50, right = SCREEN_WIDTH - 10)
+                            next_furit_img_1 = pg.transform.scale(n_fruits[fruit_img[1]], (50, 50))
+                            next_furit_img_1 = next_furit_img_1.convert()
+                            next_furit_img_1.set_alpha(100)
+                            next_furit_img_1.set_colorkey((0, 0, 0))
+                            next_furit_1 = next_furit_img_1.get_rect(centery = fruit.centery + 50, right = SCREEN_WIDTH - 220)
                         
                         else:
                             
@@ -132,20 +142,19 @@ while True:
 
                         circle_t = pg.transform.rotate(circle_t, n)
 
-                        if fruit_img[0] == blue_img:
+                        if fruits[fruit_img[0]] == blue_img:
 
                             score += 100
 
                             fruit_img.pop(0)
-                            fruit_img.append(fruits[rd.randint(0, len(fruits) - 1)])
-                            fruit = fruit_img[0].get_rect(centery = ((SCREEN_HEIGHT-100)/2), centerx = SCREEN_WIDTH/2)
+                            fruit_img.append(rd.randint(0, len(fruits) - 1))
+                            fruit = fruits[fruit_img[0]].get_rect(centery = ((SCREEN_HEIGHT-100)/2), centerx = SCREEN_WIDTH/2)
 
-                            next_furit_img_1 = pg.transform.scale(fruit_img[1], (50, 50))
-                            next_furit_1 = next_furit_img_1.get_rect(top = SCREEN_HEIGHT - 50, right = SCREEN_WIDTH - 120)
-                            next_furit_img_2 = pg.transform.scale(fruit_img[2], (50, 50))
-                            next_furit_2 = next_furit_img_2.get_rect(top = SCREEN_HEIGHT - 50, right = SCREEN_WIDTH - 60)
-                            next_furit_img_3 = pg.transform.scale(fruit_img[2], (50, 50))
-                            next_furit_3 = next_furit_img_3.get_rect(top = SCREEN_HEIGHT - 50, right = SCREEN_WIDTH - 10)
+                            next_furit_img_1 = pg.transform.scale(n_fruits[fruit_img[1]], (50, 50))
+                            next_furit_img_1 = next_furit_img_1.convert()
+                            next_furit_img_1.set_alpha(100)
+                            next_furit_img_1.set_colorkey((0, 0, 0))
+                            next_furit_1 = next_furit_img_1.get_rect(centery = fruit.centery + 50, right = SCREEN_WIDTH - 220)
                             
                         else:
                             
@@ -160,20 +169,19 @@ while True:
 
                         circle_t = pg.transform.rotate(circle_t, n)
 
-                        if fruit_img[0] == orange_img:
+                        if fruits[fruit_img[0]] == orange_img:
 
                             score += 100
 
                             fruit_img.pop(0)
-                            fruit_img.append(fruits[rd.randint(0, len(fruits) - 1)])
-                            fruit = fruit_img[0].get_rect(centery = ((SCREEN_HEIGHT-100)/2), centerx = SCREEN_WIDTH/2)
+                            fruit_img.append(rd.randint(0, len(fruits) - 1))
+                            fruit = fruits[fruit_img[0]].get_rect(centery = ((SCREEN_HEIGHT-100)/2), centerx = SCREEN_WIDTH/2)
 
-                            next_furit_img_1 = pg.transform.scale(fruit_img[1], (50, 50))
-                            next_furit_1 = next_furit_img_1.get_rect(top = SCREEN_HEIGHT - 50, right = SCREEN_WIDTH - 120)
-                            next_furit_img_2 = pg.transform.scale(fruit_img[2], (50, 50))
-                            next_furit_2 = next_furit_img_2.get_rect(top = SCREEN_HEIGHT - 50, right = SCREEN_WIDTH - 60)
-                            next_furit_img_3 = pg.transform.scale(fruit_img[2], (50, 50))
-                            next_furit_3 = next_furit_img_3.get_rect(top = SCREEN_HEIGHT - 50, right = SCREEN_WIDTH - 10)
+                            next_furit_img_1 = pg.transform.scale(n_fruits[fruit_img[1]], (50, 50))
+                            next_furit_img_1 = next_furit_img_1.convert()
+                            next_furit_img_1.set_alpha(100)
+                            next_furit_img_1.set_colorkey((0, 0, 0))
+                            next_furit_1 = next_furit_img_1.get_rect(centery = fruit.centery + 50, right = SCREEN_WIDTH - 220)
                             
                         else:
                             
@@ -188,20 +196,19 @@ while True:
 
                         circle_t = pg.transform.rotate(circle_t, n)
 
-                        if fruit_img[0] == red_img:
+                        if fruits[fruit_img[0]] == red_img:
 
                             score += 100
 
                             fruit_img.pop(0)
-                            fruit_img.append(fruits[rd.randint(0, len(fruits) - 1)])
-                            fruit = fruit_img[0].get_rect(centery = ((SCREEN_HEIGHT-100)/2), centerx = SCREEN_WIDTH/2)
+                            fruit_img.append(rd.randint(0, len(fruits) - 1))
+                            fruit = fruits[fruit_img[0]].get_rect(centery = ((SCREEN_HEIGHT-100)/2), centerx = SCREEN_WIDTH/2)
 
-                            next_furit_img_1 = pg.transform.scale(fruit_img[1], (50, 50))
-                            next_furit_1 = next_furit_img_1.get_rect(top = SCREEN_HEIGHT - 50, right = SCREEN_WIDTH - 120)
-                            next_furit_img_2 = pg.transform.scale(fruit_img[2], (50, 50))
-                            next_furit_2 = next_furit_img_2.get_rect(top = SCREEN_HEIGHT - 50, right = SCREEN_WIDTH - 60)
-                            next_furit_img_3 = pg.transform.scale(fruit_img[2], (50, 50))
-                            next_furit_3 = next_furit_img_3.get_rect(top = SCREEN_HEIGHT - 50, right = SCREEN_WIDTH - 10)
+                            next_furit_img_1 = pg.transform.scale(n_fruits[fruit_img[1]], (50, 50))
+                            next_furit_img_1 = next_furit_img_1.convert()
+                            next_furit_img_1.set_alpha(100)
+                            next_furit_img_1.set_colorkey((0, 0, 0))
+                            next_furit_1 = next_furit_img_1.get_rect(centery = fruit.centery + 50, right = SCREEN_WIDTH - 220)
                             
                         else:
                             
@@ -210,17 +217,21 @@ while True:
 
                     elif event.key == pg.K_ESCAPE: pg.quit() 
 
-            score_img = small_font.render('SCORE {}'.format(score), True, (255, 255, 255))
-            health_img = small_font.render('LIFE', True, (255, 255, 255))
+            score_img = small_font.render('SCORE {}'.format(score), True, (100, 100, 100))
+            health_img = small_font.render('LIFE', True, (100, 100, 100))
+
+            now_time = int(tm.time() - start_time)
+            time_check = 100 - now_time
+
+            time_img = time_font.render('TIME  :  {}'.format(time_check), True, (255, 255, 255))
 
             if health == 3: life_img = health_3
             elif health == 2: life_img = health_2
             elif health == 1: life_img = health_1
             elif health <= 0: life_img = health_0
 
-            if health <= 0:
-
-                go = True
+            if health <= 0: go = True
+            if time_check == 0: go = True
 
             scr.blit(bg_img, (0, 0))
             scr.blit(circle_bg, (25, 25))
@@ -233,13 +244,12 @@ while True:
             scr.blit(circle_b, (90, 90))
             scr.blit(circle_t, (81, 81))
 
-            scr.blit(fruit_img[0], fruit)
+            scr.blit(fruits[fruit_img[0]], fruit)
             scr.blit(next_furit_img_1, next_furit_1)
-            scr.blit(next_furit_img_2, next_furit_2)
-            scr.blit(next_furit_img_3, next_furit_3)
-            scr.blit(score_img, (15, SCREEN_HEIGHT - 90))
-            scr.blit(health_img, (SCREEN_WIDTH - 145 - health_img.get_width(), SCREEN_HEIGHT - 90))
-            scr.blit(life_img, (SCREEN_WIDTH - 135, SCREEN_HEIGHT - 90))
+            scr.blit(score_img, (15, SCREEN_HEIGHT - 40))
+            scr.blit(health_img, (SCREEN_WIDTH - 135 - health_img.get_width(), SCREEN_HEIGHT - 40))
+            scr.blit(life_img, (SCREEN_WIDTH - 125, SCREEN_HEIGHT - 45))
+            scr.blit(time_img, (SCREEN_WIDTH - 10 - time_img.get_width(), SCREEN_HEIGHT - 85))
 
         else :
 
@@ -254,13 +264,12 @@ while True:
             scr.blit(circle_b, (90, 90))
             scr.blit(circle_t, (81, 81))
 
-            scr.blit(fruit_img[0], fruit)
+            scr.blit(fruits[fruit_img[0]], fruit)
             scr.blit(next_furit_img_1, next_furit_1)
-            scr.blit(next_furit_img_2, next_furit_2)
-            scr.blit(next_furit_img_3, next_furit_3)
-            scr.blit(score_img, (15, SCREEN_HEIGHT - 90))
-            scr.blit(health_img, (SCREEN_WIDTH - 145 - health_img.get_width(), SCREEN_HEIGHT - 90))
-            scr.blit(life_img, (SCREEN_WIDTH - 135, SCREEN_HEIGHT - 90))
+            scr.blit(score_img, (15, SCREEN_HEIGHT - 40))
+            scr.blit(health_img, (SCREEN_WIDTH - 135 - health_img.get_width(), SCREEN_HEIGHT - 40))
+            scr.blit(life_img, (SCREEN_WIDTH - 125, SCREEN_HEIGHT - 45))
+            scr.blit(time_img, (SCREEN_WIDTH - 10 - time_img.get_width(), SCREEN_HEIGHT - 85))
 
             score_rect = score_img.get_rect(centerx = SCREEN_WIDTH/2, centery = SCREEN_HEIGHT/2)
 
