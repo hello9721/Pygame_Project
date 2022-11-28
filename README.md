@@ -1,14 +1,18 @@
 # Pygame_Project
 #### Study - Pygame Study & Practice ( 22/11/23 )
 
+<br>
+
 #### 22/11/24 - 1차 회의
 
 > Pygame을 사용한 게임 프로젝트로 의견이 모아짐.
 > 다음 회의까지 Pygame에 대해 공부해오기로 함.
 
-<br>        
+<br> <br>      
 
 #### 22/11/28 - 2차 회의
+
+<br>
 
 ##### 무슨 게임을 만들것인가.
 
