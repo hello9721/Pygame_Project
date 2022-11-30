@@ -1,0 +1,15 @@
+# Game Settings
+TITLE = "Endless Jump"
+KEY_REPEAT_1 = 100
+KEY_REPEAT_2 = 10
+FPS = 40
+
+# Screen Value
+SCRWIDTH = 500
+SCRHEIGHT = 500
+
+# Ball Value
+WIDTH = 50
+HEIGHT = 50
+VEL = 3
+JUMP_HEIGHT = 11

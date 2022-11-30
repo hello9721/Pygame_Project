@@ -1,4 +1,5 @@
 import pygame as pg
+from SETTINGS import *
 
 def keyboard(event, to_x, speed):
 
@@ -9,3 +10,23 @@ def keyboard(event, to_x, speed):
             to_x = -1 * speed
 
     return to_x
+
+def jump(img, ball):
+
+    if JUMP_HEIGHT == 11:
+        ball_img = img[2]
+        JUMP_HEIGHT -= 1
+    elif JUMP_HEIGHT > -11:
+        ball_img = img[1]
+        n = 1
+        if JUMP_HEIGHT < 0: n = -1
+        ball.bottom -= (JUMP_HEIGHT ** 2) * n * 0.5
+        JUMP_HEIGHT -= 1
+    elif JUMP_HEIGHT == -11:
+        ball_img = img[2]
+        JUMP_HEIGHT -= 1
+    else:
+        JUMP_HEIGHT = 11
+        ball.bottom = SCRHEIGHT
+
+    return ball_img
