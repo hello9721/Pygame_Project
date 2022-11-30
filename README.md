@@ -8,7 +8,7 @@
 > **Pygame을 사용한 게임 프로젝트**
 > 다음 회의까지 Pygame에 대해 공부해오기로 함.
 
-<br>    
+#  
 
 #### 22/11/28 - 2차 회의
 
@@ -60,4 +60,5 @@
 
 ![KakaoTalk_20221128_182912899](https://user-images.githubusercontent.com/95046369/204242497-b0e60bf3-fcb8-4d58-9752-19e113b5e0ac.png)
 
-<br>
+
+#
