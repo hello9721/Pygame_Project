@@ -56,7 +56,7 @@
 
 </details>
 
-> **사다리 타기 분배** >
+> 사다리 타기 분배 >
 
 ![KakaoTalk_20221128_182912899](https://user-images.githubusercontent.com/95046369/204242497-b0e60bf3-fcb8-4d58-9752-19e113b5e0ac.png)
 
