@@ -15,11 +15,14 @@
 > * 이후 여러 기능 및 맵 추가 구현을 위해 여러 수치를 설정 할 수 있는 SETTING,<br>
 > * 플랫폼이나 플레이어에 관한 객체를 구현할 SPRITE, 메인 루프를 실행하고 게임 클라이언트 자체를 구현할 MAIN으로<br>
 > * 나누어 클래스 작성.<br>
-> * 정상 작동 확인.<br>
+> * 정상 작동 확인.<br><br>
 
 <details>
 <summary>🖼️ CHECK THE PROGRESS 🖼️</summary>
 
+ <br>
+  
 ![Endless Jump](https://user-images.githubusercontent.com/95046369/204690054-fd71c4cb-a0d8-4485-9485-7c37c7e88fe2.gif)
+ <br>
 
 </details>
