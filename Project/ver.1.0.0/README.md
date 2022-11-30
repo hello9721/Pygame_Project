@@ -3,8 +3,8 @@
 
 #### 22/11/28 ~ 22/11/30 - 자동으로 계속 튕기는 공 구현하기
 
-> ⚓️ [참고영상](https://youtu.be/2-DNswzCkqk) <br>
-> ⚓️ [공 이미지 참고 링크](https://medium.com/pixel-grimoire/how-to-start-making-pixel-art-3-c9eb70270fa1) <br><br>
+> ⚓️ [참고영상 - Tech With Tim](https://youtu.be/2-DNswzCkqk) <br>
+> ⚓️ [공 이미지 참고 링크 - Pedro Medeiros](https://medium.com/pixel-grimoire/how-to-start-making-pixel-art-3-c9eb70270fa1) <br><br>
 > 다른 분이 구현해주신 키보드 입력을 받아 움직이는 코드 또한 적용. <br>
 
 <br>
