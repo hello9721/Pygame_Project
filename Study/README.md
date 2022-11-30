@@ -48,4 +48,17 @@
 
 #
 #### [JUMPY EXAMPLE - 동도로동동](https://blog.naver.com/topblade71/221507164812) ( 22/11/29 ) - JUMPY 게임
-        > 동도로동동 님의 코드를 보고 이해하려고 해봄.
+        > 동도로동동 님의 코드를 보고 우리 프로젝트와 비슷한 게임이기에 이해하려고 해봄.
+        > 다 보고 나니 얼추 어떤 코드인지는 느낌이 오지만 응용하려고 하니 잘 작동하지 않음.
+        > 한참을 허우적대다가 일단은 좀더 쉬운 코드부터 보고 차근차근 올라와야겠다 싶음.
+        
+<details>
+<summary> STUDY </summary>
+
+</br>
+
+> 스스로 생각하고 정리해본 코드 구조
+
+[HERE!](https://github.com/hello9721/Pygame_Project/blob/main/Study/Project%20Example/Code%20Review.txt)
+
+</details>
