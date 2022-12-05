@@ -97,11 +97,11 @@ class Platform:
                     
                     if self.rect.colliderect(i):
 
-                        if i.left >= SCRWIDTH/2: x_range = (0, i.left)
-                        elif i.left < SCRWIDTH/2: x_range = (i.left, 0)
+                        if i.left >= SCRWIDTH/2: x_range = (0, SCRWIDTH/2)
+                        elif i.left < SCRWIDTH/2: x_range = (SCRWIDTH/2, SCRWIDTH)
 
-                        if i.centery >= SCRHEIGHT/2: y_range = (i.bottom, SCRHEIGHT)
-                        elif SCRHEIGHT/2 > i.centery: y_range = (0, i.top)
+                        if i.centery >= SCRHEIGHT/2: y_range = (SCRHEIGHT/2, SCRHEIGHT)
+                        elif SCRHEIGHT/2 > i.centery: y_range = (0, SCRHEIGHT/2)
 
                         self.x = rd.randrange(x_range[0], x_range[1])
                         self.y = rd.randrange(y_range[0], y_range[1])
