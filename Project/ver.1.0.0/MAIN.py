@@ -13,8 +13,36 @@ class Game:
 
         self.run = True
         self.ball = Player()
+        self.platform = Platform(self)
+        self.p_rect = [self.platform.rect]
+        self.p_img = [self.platform.plat_img]
+
+        self.running()
 
     def running(self):
+
+        while self.run:
+
+            pg.time.delay(FPS)
+
+            self.key_events()
+            self.update()
+        
+
+    def update(self):
+
+        for i in range(NUM_PLAT - len(self.p_rect)):
+            
+            self.platform.random_platform()
+
+            self.p_rect.append(self.platform.rect)
+            self.p_img.append(self.platform.plat_img)
+
+        for i in range(len(self.p_rect)): self.scr.blit(self.p_img[i], self.p_rect[i])
+
+        pg.display.update()
+
+    def key_events(self):
 
         for event in pg.event.get():
 
@@ -29,13 +57,8 @@ class Game:
         
         self.scr.fill((0,0,0))
         self.scr.blit(self.ball.ball_img, self.ball.rect)
-        pg.display.update()
 
 
 g = Game()
-
-while g.run:
-    pg.time.delay(FPS)
-    g.running()
 
 pg.quit()
