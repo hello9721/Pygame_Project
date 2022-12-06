@@ -72,41 +72,30 @@ class Platform:
 
     def __init__(self, game):
 
-        width = 100 
         self.x = 0
         self.y = START_Y
         self.game = game
 
         self.plat = pg.image.load("./assets/sample_platform.png")
-        self.plat_img = pg.transform.scale(self.plat, (width, P_HEIGHT))
+        self.plat_img = pg.transform.scale(self.plat, (SCRWIDTH, P_HEIGHT))
         self.rect = self.plat_img.get_rect(left = self.x, top = self.y + 10)
 
-    def random_platform(self):
-
-        random_width = rd.randrange(P_WIDTH_1, P_WIDTH_2)
-        self.x = rd.randrange(0, SCRWIDTH - random_width + 20, 11)
-        self.y = SCRHEIGHT + rd.randrange(-600, -120, 60)
-
-        collide = True
-
-        while collide:
-
-            if len(self.game.p_rect) != 0:
+    def random_platform_lst(self):
         
-                for i in self.game.p_rect:
-                    
-                    if self.rect.colliderect(i):
+        self.img_lst = [0] * 10
+        self.rect_lst = [0] * 10
 
-                        if i.left >= SCRWIDTH/2: x_range = (0, SCRWIDTH/2)
-                        elif i.left < SCRWIDTH/2: x_range = (SCRWIDTH/2, SCRWIDTH)
+        for i in range(10):
 
-                        if i.centery >= SCRHEIGHT/2: y_range = (SCRHEIGHT/2, SCRHEIGHT)
-                        elif SCRHEIGHT/2 > i.centery: y_range = (0, SCRHEIGHT/2)
+            width = rd.randrange(P_WIDTH_1, P_WIDTH_2)
+            plat_img = pg.transform.scale(self.plat, (width, P_HEIGHT))
+            self.img_lst[i] = plat_img
+            self.rect_lst[i] = plat_img.get_rect()
 
-                        self.x = rd.randrange(x_range[0], x_range[1])
-                        self.y = rd.randrange(y_range[0], y_range[1])
+    def random_choice(self, x, y):
 
-                    else: collide = False            
-            
-        self.plat_img = pg.transform.scale(self.plat, (random_width, P_HEIGHT))
-        self.rect = self.plat_img.get_rect(left = self.x, top = self.y)
+        idx = rd.randrange(0, 10)
+        self.plat_img = self.img_lst[idx]
+        self.rect = self.rect_lst[idx]
+        self.rect.x = x
+        self.rect.y = y

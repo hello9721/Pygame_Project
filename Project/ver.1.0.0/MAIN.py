@@ -1,4 +1,5 @@
 import pygame as pg
+import random as rd
 from SPRITES import *
 from SETTINGS import *
 
@@ -31,14 +32,15 @@ class Game:
 
     def update(self):
 
-        for i in range(NUM_PLAT - len(self.p_rect)):
-            
-            self.platform.random_platform()
+        self.platform.random_platform_lst()
+        n = 100
 
-            self.p_rect.append(self.platform.rect)
-            self.p_img.append(self.platform.plat_img)
-
-        for i in range(len(self.p_rect)): self.scr.blit(self.p_img[i], self.p_rect[i])
+        while len(self.platforms) < 6:
+            width = rd.randrange(50, 100)
+            p = Platform(self, rd.randrange(0, WIDTH - width),
+                         rd.randrange(-75, -30))
+            self.platforms.add(p)
+            self.all_sprites.add(p)
 
         pg.display.update()
 
